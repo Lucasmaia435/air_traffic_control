@@ -1,4 +1,8 @@
 #include "definitions.h"
+#include "funcs.h"
+#include "stdio.h"
+#include <stdlib.h>
+
 int main()
 {
     Heap *heap = criarHeap(100);

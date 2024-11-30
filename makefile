@@ -22,8 +22,8 @@ main.o: main.c funcs.h definitions.h
 	$(CC) $(CFLAGS) -c main.c
 
 # Regra para compilar o funcs.c
-area.o: funcs.c funcs.h definitions.h
-	$(CC) $(CFLAGS) -c area.c
+funcs.o: funcs.c funcs.h definitions.h
+	$(CC) $(CFLAGS) -c funcs.c
 
 # Regra para limpar os arquivos gerados
 clean:
