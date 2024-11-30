@@ -20,9 +20,8 @@ void trocar(Aeronave *a, Aeronave *b)
 
 int calcularPrioridade(const Aeronave *aeronave)
 {
-    int prioridade = aeronave->combustivel;
-    if (aeronave->emergencia)
-        prioridade += 1000;
+    int prioridade = (1000 - aeronave->combustivel) + (1440 - aeronave->horario) + (500 * aeronave->tipo) + (5000 * aeronave->emergencia);
+
     return prioridade;
 }
 
