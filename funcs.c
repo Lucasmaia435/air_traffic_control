@@ -1,6 +1,7 @@
 #include "definitions.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 Heap *criarHeap(int capacidade)
 {
@@ -92,17 +93,33 @@ void removerMaiorPrioridade(Heap *heap)
     heapifyBaixo(heap, 0);
 }
 
-void atualizarPrioridade(Heap *heap, int index)
+void atualizarPrioridade(Heap *heap, const char *id, int novoCombustivel, int novoHorario, int novoTipo, int novaEmergencia)
 {
-    if (index < 0 || index >= heap->tamanho)
+    int index = -1;
+    for (int i = 0; i < heap->tamanho; i++)
     {
-        printf("Índice inválido.\n");
+        if (strcmp(heap->dados[i].id, id) == 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+    {
+        printf("Aeronave com ID %s não encontrada.\n", id);
         return;
     }
 
+    heap->dados[index].combustivel = novoCombustivel;
+    heap->dados[index].horario = novoHorario;
+    heap->dados[index].tipo = novoTipo;
+    heap->dados[index].emergencia = novaEmergencia;
+    // Recalcular a prioridade com base nos novos valores
     heap->dados[index].prioridade = calcularPrioridade(&heap->dados[index]);
-    heapifyCima(heap, index);
+    // Ajustar a posição da aeronave no heap
     heapifyBaixo(heap, index);
+    heapifyCima(heap, index);
 }
 
 void exibirHeap(Heap *heap)

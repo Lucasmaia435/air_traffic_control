@@ -2,3 +2,6 @@
 output
 funcs.output
 main
+funcs.o
+main.exe
+main.o
